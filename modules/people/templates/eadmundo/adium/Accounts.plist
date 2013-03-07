@@ -1,0 +1,12 @@
+{
+    "TopAccountID":2,
+    "Accounts":
+        [
+            {
+                "Service":"GTalk",
+                "UID":"edward@adaptivelab.co.uk",
+                "Type":"libpurple-jabber-gtalk",
+                "ObjectID":"1"
+            }
+        ]
+}
