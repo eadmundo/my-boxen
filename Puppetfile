@@ -33,3 +33,14 @@ github "sudo",     "1.0.0"
 
 # Optional/custom modules. There are tons available at
 # https://github.com/boxen.
+
+github "alfred",   "1.0.1"
+github "chrome",   "1.0.0"
+github "dropbox",  "1.0.0"
+github "iterm2",   "1.0.0"
+github "caffeine", "1.0.0"
+github "virtualbox", "1.0.0"
+github "vagrant", "1.0.0"
+github "wget", "1.0.0"
+github "sublime_text_2", "1.0.0"
+github "phantomjs", "1.0.0"
