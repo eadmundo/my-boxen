@@ -18,4 +18,11 @@ class people::eadmundo {
      ]:
   }
 
+  $homedir = "/Users/${::luser}"
+
+  file { "${homedir}/.profile":
+    content => template("people/${::github_login}-profile.sh"),
+    mode => '0644',
+  }
+
 }
