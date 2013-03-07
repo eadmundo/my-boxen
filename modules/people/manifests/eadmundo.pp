@@ -11,4 +11,11 @@ class people::eadmundo {
   include sublime_text_2
   include phantomjs
 
+  package {
+    [
+     'bash-completion',
+     'tmux',
+     ]:
+  }
+
 }
