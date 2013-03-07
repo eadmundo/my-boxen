@@ -10,6 +10,7 @@ class people::eadmundo {
   include wget
   include sublime_text_2
   include phantomjs
+  include adium
 
   package {
     [
