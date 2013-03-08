@@ -19,4 +19,8 @@ class adaptivelab {
      ]:
   }
 
+  exec { 'disable-safe-files-in-safari':
+    command => "defaults write com.apple.Safari AutoOpenSafeDownloads -bool NO"
+  }
+
 }
