@@ -16,7 +16,7 @@ if [ -f /opt/boxen/homebrew/etc/bash_completion ]; then
     . /opt/boxen/homebrew/etc/bash_completion
 fi
 
-PS1='\[\033[32m\]\u@\h\[\033[00m\]:\[\033[34m\]\w\[\033[31m\]$(__git_ps1)\[\033[00m\]\$ '
+PS1='\[\033[32m\]\u@\h\[\033[00m\]:\[\033[34m\]\w\[\033[31m\]$(__git_ps1)\[\033[00m\]\n\$ '
 
 #eval "$(hub alias -s)"
 
