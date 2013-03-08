@@ -72,4 +72,10 @@ class people::eadmundo {
     plist => 'Login Preferences.plist',
   }
 
+  $preferences_dir = "${homedir}/Library/Preferences"
+
+  class {'adaptivelab::enable_developer_toolbar_safari':
+    preferences_dir => $preferences_dir,
+  }
+
 }

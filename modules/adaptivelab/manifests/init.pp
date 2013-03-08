@@ -23,4 +23,28 @@ class adaptivelab {
     command => "defaults write com.apple.Safari AutoOpenSafeDownloads -bool NO"
   }
 
+  define plistbuddy($plist, $property, $value) {
+
+    exec { "${plist}-${property}-${value}":
+      command => "/usr/libexec/PlistBuddy -c \"Set :${property} ${value}\" ${plist}",
+    }
+
+  }
+
+  class enable_developer_toolbar_safari($preferences_dir) {
+
+    adaptivelab::plistbuddy { 'enable-developer-toolbar-safari-1':
+      plist => "${preferences_dir}/com.apple.Safari.plist",
+      property => 'com.apple.Safari.ContentPageGroupIdentifier.WebKit2DeveloperExtrasEnabled',
+      value => '1',
+    }
+
+    adaptivelab::plistbuddy { 'enable-developer-toolbar-safari-2':
+      plist => "${preferences_dir}/com.apple.Safari.plist",
+      property => 'IncludeDevelopMenu',
+      value => '1',
+    }
+
+  }
+
 }
