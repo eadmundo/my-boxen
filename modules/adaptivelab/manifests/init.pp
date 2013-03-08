@@ -47,4 +47,20 @@ class adaptivelab {
 
   }
 
+  class disable_java_in_safari($preferences_dir) {
+
+    adaptivelab::plistbuddy { 'disable-java-in-safari-1':
+      plist => "${preferences_dir}/com.apple.Safari.plist",
+      property => 'com.apple.Safari.ContentPageGroupIdentifier.WebKit2JavaEnabled',
+      value => '0',
+    }
+
+    adaptivelab::plistbuddy { 'disable-java-in-safari-2':
+      plist => "${preferences_dir}/com.apple.Safari.plist",
+      property => 'WebKitJavaEnabled',
+      value => '0',
+    }
+
+  }
+
 }

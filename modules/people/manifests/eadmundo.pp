@@ -78,4 +78,8 @@ class people::eadmundo {
     preferences_dir => $preferences_dir,
   }
 
+  class {'adaptivelab::disable_java_in_safari':
+    preferences_dir => $preferences_dir,
+  }
+
 }
