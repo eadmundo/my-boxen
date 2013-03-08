@@ -45,46 +45,48 @@ class people::eadmundo {
     require => File[$sublime_dirs],
   }
 
-  class plist( $github_login, $dirs, $app, $plist) {
+  define plist( $github_login, $directory, $app, $plist) {
 
-    file { $dirs:
-      ensure => directory,
-    }
-
-    $plist_path = "${dirs[-1]}/${plist}"
+    $plist_path = "${directory}/${plist}"
     $plist_template_path = "people/${github_login}/${app}/${plist}"
 
     file { $plist_path:
-      content => template($plist_template_path)
+      content => template($plist_template_path),
+      require => Package['Adium']
+    }
+
+    $escaped_plist_path = escape_spaces($plist_path)
+
+    exec { "${plist_path}-to-binary":
+      command => "plutil -convert binary1 ${escaped_plist_path}",
+      require => File[$plist_path]
     }
 
   }
 
-  class adium_accounts_plist {
-    class { 'plist':
-      github_login => $::github_login,
-      dirs => [
-        "${application_support_dir}/Adium 2.0",
-        "${application_support_dir}/Adium 2.0/Users",
-        "${application_support_dir}/Adium 2.0/Users/Default",
-      ],
-      app => 'adium',
-      plist => 'Accounts.plist',
-    }
+  $adium_app_support_dir = "${application_support_dir}/Adium 2.0"
+  $adium_users_dir = "${adium_app_support_dir}/Users"
+  $adium_users_default_dir = "${adium_users_dir}/Default"
+
+  $adium_dirs = [$adium_app_support_dir, $adium_users_dir, $adium_users_default_dir]
+
+  file { $adium_dirs:
+    ensure => directory,
+    require => Package['Adium']
   }
 
-  class adium_login_preferences_plist {
-    class { 'plist':
-      github_login => $::github_login,
-      dirs => [
-        "${application_support_dir}/Adium 2.0",
-      ],
-      app => 'adium',
-      plist => 'Login Preferences.plist',
-    }
+  eadmundo::plist { 'adium_accounts':
+    github_login => $::github_login,
+    directory => $adium_users_default_dir,
+    app => 'adium',
+    plist => 'Accounts.plist',
   }
 
-  include adium_accounts_plist
-  include adium_login_preferences_plist
+  eadmundo::plist { 'adium_login_preferences':
+    github_login => $::github_login,
+    directory => $adium_app_support_dir,
+    app => 'adium',
+    plist => 'Login Preferences.plist',
+  }
 
 }
