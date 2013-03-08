@@ -81,7 +81,7 @@ GITHUBTARBALL
 GITHUBTARBALL
   remote: boxen/puppet-sublime_text_2
   specs:
-    sublime_text_2 (1.0.0)
+    sublime_text_2 (1.1.0)
 
 GITHUBTARBALL
   remote: boxen/puppet-sudo
@@ -132,7 +132,7 @@ DEPENDENCIES
   phantomjs (= 1.0.0)
   ruby (= 3.1.0)
   stdlib (= 3.0.0)
-  sublime_text_2 (= 1.0.0)
+  sublime_text_2 (= 1.1.0)
   sudo (= 1.0.0)
   vagrant (= 1.0.0)
   virtualbox (= 1.0.0)

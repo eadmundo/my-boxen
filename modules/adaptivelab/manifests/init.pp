@@ -20,13 +20,19 @@ class adaptivelab {
   }
 
   exec { 'disable-safe-files-in-safari':
-    command => "defaults write com.apple.Safari AutoOpenSafeDownloads -bool NO"
+    command => "defaults write com.apple.Safari AutoOpenSafeDownloads -bool NO",
+    provider => shell,
+    onlyif => "[[ `defaults read com.apple.Safari AutoOpenSafeDownloads` == 0 ]] && exit 1"
   }
 
-  define plistbuddy($plist, $property, $value) {
+  define plistbuddy($plist, $property, $value, $buddy_path="/usr/libexec/PlistBuddy") {
+
+    notify { "[[ `$buddy_path -c \"Print :${property}\" ${plist}` == ${value} ]] || exit 1": }
 
     exec { "${plist}-${property}-${value}":
-      command => "/usr/libexec/PlistBuddy -c \"Set :${property} ${value}\" ${plist}",
+      command => "$buddy_path -c \"Set :${property} ${value}\" ${plist}",
+      provider => shell,
+      onlyif => "[[ `$buddy_path -c \"Print :${property}\" ${plist}` == ${value} ]] || exit 1",
     }
 
   }
@@ -36,13 +42,13 @@ class adaptivelab {
     adaptivelab::plistbuddy { 'enable-developer-toolbar-safari-1':
       plist => "${preferences_dir}/com.apple.Safari.plist",
       property => 'com.apple.Safari.ContentPageGroupIdentifier.WebKit2DeveloperExtrasEnabled',
-      value => '1',
+      value => 'true',
     }
 
     adaptivelab::plistbuddy { 'enable-developer-toolbar-safari-2':
       plist => "${preferences_dir}/com.apple.Safari.plist",
       property => 'IncludeDevelopMenu',
-      value => '1',
+      value => 'true',
     }
 
   }
@@ -52,13 +58,13 @@ class adaptivelab {
     adaptivelab::plistbuddy { 'disable-java-in-safari-1':
       plist => "${preferences_dir}/com.apple.Safari.plist",
       property => 'com.apple.Safari.ContentPageGroupIdentifier.WebKit2JavaEnabled',
-      value => '0',
+      value => 'false',
     }
 
     adaptivelab::plistbuddy { 'disable-java-in-safari-2':
       plist => "${preferences_dir}/com.apple.Safari.plist",
       property => 'WebKitJavaEnabled',
-      value => '0',
+      value => 'false',
     }
 
   }
