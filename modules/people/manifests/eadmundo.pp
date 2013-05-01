@@ -1,6 +1,31 @@
 class people::eadmundo {
 
-  include adaptivelab
+  include caffeine
+  include chrome
+  include dropbox
+  include iterm2::stable
+  include virtualbox
+  include vagrant
+  include wget
+  include sublime_text_2
+  include emacs
+  #include phantomjs
+  #include nginx
+  #include mongodb
+  #include elasticsearch
+  include textmate
+  include slate
+  #include postgresql
+  #include redis
+  include hub
+  include onepassword
+
+  package {
+    [
+     'bash-completion',
+     'tmux',
+     ]:
+  }
 
   $homedir = "/Users/${::luser}"
 
@@ -28,58 +53,58 @@ class people::eadmundo {
     require => File[$sublime_dirs],
   }
 
-  define plist( $github_login, $directory, $app, $plist) {
+  # define plist( $github_login, $directory, $app, $plist) {
 
-    $plist_path = "${directory}/${plist}"
-    $plist_template_path = "people/${github_login}/${app}/${plist}"
+  #   $plist_path = "${directory}/${plist}"
+  #   $plist_template_path = "people/${github_login}/${app}/${plist}"
 
-    file { $plist_path:
-      content => template($plist_template_path),
-      require => Package['Adium']
-    }
+  #   file { $plist_path:
+  #     content => template($plist_template_path),
+  #     require => Package['Adium']
+  #   }
 
-    $escaped_plist_path = escape_spaces($plist_path)
+  #   $escaped_plist_path = escape_spaces($plist_path)
 
-    exec { "${plist_path}-to-binary":
-      command => "plutil -convert binary1 ${escaped_plist_path}",
-      require => File[$plist_path]
-    }
+  #   exec { "${plist_path}-to-binary":
+  #     command => "plutil -convert binary1 ${escaped_plist_path}",
+  #     require => File[$plist_path]
+  #   }
 
-  }
+  # }
 
-  $adium_app_support_dir = "${application_support_dir}/Adium 2.0"
-  $adium_users_dir = "${adium_app_support_dir}/Users"
-  $adium_users_default_dir = "${adium_users_dir}/Default"
+  # $adium_app_support_dir = "${application_support_dir}/Adium 2.0"
+  # $adium_users_dir = "${adium_app_support_dir}/Users"
+  # $adium_users_default_dir = "${adium_users_dir}/Default"
 
-  $adium_dirs = [$adium_app_support_dir, $adium_users_dir, $adium_users_default_dir]
+  # $adium_dirs = [$adium_app_support_dir, $adium_users_dir, $adium_users_default_dir]
 
-  file { $adium_dirs:
-    ensure => directory,
-    require => Package['Adium']
-  }
+  # file { $adium_dirs:
+  #   ensure => directory,
+  #   require => Package['Adium']
+  # }
 
-  eadmundo::plist { 'adium_accounts':
-    github_login => $::github_login,
-    directory => $adium_users_default_dir,
-    app => 'adium',
-    plist => 'Accounts.plist',
-  }
+  # eadmundo::plist { 'adium_accounts':
+  #   github_login => $::github_login,
+  #   directory => $adium_users_default_dir,
+  #   app => 'adium',
+  #   plist => 'Accounts.plist',
+  # }
 
-  eadmundo::plist { 'adium_login_preferences':
-    github_login => $::github_login,
-    directory => $adium_app_support_dir,
-    app => 'adium',
-    plist => 'Login Preferences.plist',
-  }
+  # eadmundo::plist { 'adium_login_preferences':
+  #   github_login => $::github_login,
+  #   directory => $adium_app_support_dir,
+  #   app => 'adium',
+  #   plist => 'Login Preferences.plist',
+  # }
 
-  $preferences_dir = "${homedir}/Library/Preferences"
+  # $preferences_dir = "${homedir}/Library/Preferences"
 
-  class {'adaptivelab::enable_developer_toolbar_safari':
-    preferences_dir => $preferences_dir,
-  }
+  # class {'adaptivelab::enable_developer_toolbar_safari':
+  #   preferences_dir => $preferences_dir,
+  # }
 
-  class {'adaptivelab::disable_java_in_safari':
-    preferences_dir => $preferences_dir,
-  }
+  # class {'adaptivelab::disable_java_in_safari':
+  #   preferences_dir => $preferences_dir,
+  # }
 
 }
