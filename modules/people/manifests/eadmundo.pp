@@ -13,12 +13,12 @@ class people::eadmundo {
   #include nginx
   #include mongodb
   #include elasticsearch
-  include textmate
-  include slate
+  #include textmate
+  #include slate
   #include postgresql
   #include redis
-  include hub
-  include onepassword
+  #include hub
+  #include onepassword
 
   package {
     [
