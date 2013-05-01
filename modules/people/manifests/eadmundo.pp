@@ -8,7 +8,7 @@ class people::eadmundo {
   include vagrant
   include wget
   include sublime_text_2
-  include emacs
+  #include emacs
   #include phantomjs
   #include nginx
   #include mongodb
