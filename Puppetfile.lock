@@ -16,7 +16,7 @@ GITHUBTARBALL
 GITHUBTARBALL
   remote: boxen/puppet-chrome
   specs:
-    chrome (1.0.0)
+    chrome (1.1.0)
 
 GITHUBTARBALL
   remote: boxen/puppet-dnsmasq
@@ -26,7 +26,12 @@ GITHUBTARBALL
 GITHUBTARBALL
   remote: boxen/puppet-dropbox
   specs:
-    dropbox (1.0.0)
+    dropbox (1.1.0)
+
+GITHUBTARBALL
+  remote: boxen/puppet-firefox
+  specs:
+    firefox (1.0.6)
 
 GITHUBTARBALL
   remote: boxen/puppet-gcc
@@ -91,12 +96,12 @@ GITHUBTARBALL
 GITHUBTARBALL
   remote: boxen/puppet-vagrant
   specs:
-    vagrant (1.0.0)
+    vagrant (2.0.6)
 
 GITHUBTARBALL
   remote: boxen/puppet-virtualbox
   specs:
-    virtualbox (1.0.0)
+    virtualbox (1.0.2)
 
 GITHUBTARBALL
   remote: boxen/puppet-wget
@@ -109,17 +114,24 @@ GITHUBTARBALL
     inifile (0.9.0)
 
 GITHUBTARBALL
+  remote: dieterdemeyer/puppet-adium
+  specs:
+    adium (1.1.0)
+
+GITHUBTARBALL
   remote: puppetlabs/puppetlabs-stdlib
   specs:
     stdlib (3.0.0)
 
 DEPENDENCIES
+  adium (= 1.1.0)
   alfred (= 1.0.1)
   boxen (= 1.2.0)
   caffeine (= 1.0.0)
-  chrome (= 1.0.0)
+  chrome (= 1.1.0)
   dnsmasq (= 1.0.0)
-  dropbox (= 1.0.0)
+  dropbox (= 1.1.0)
+  firefox (= 1.0.6)
   gcc (= 1.0.0)
   git (= 1.0.0)
   homebrew (= 1.1.2)
@@ -134,7 +146,7 @@ DEPENDENCIES
   stdlib (= 3.0.0)
   sublime_text_2 (= 1.1.0)
   sudo (= 1.0.0)
-  vagrant (= 1.0.0)
-  virtualbox (= 1.0.0)
+  vagrant (= 2.0.6)
+  virtualbox (= 1.0.2)
   wget (= 1.0.0)
 
