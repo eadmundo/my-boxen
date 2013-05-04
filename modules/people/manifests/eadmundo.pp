@@ -1,5 +1,6 @@
 class people::eadmundo {
 
+  include alfred
   include caffeine
   include chrome
   include dropbox
@@ -8,16 +9,14 @@ class people::eadmundo {
   include vagrant
   include wget
   include sublime_text_2
-  #include emacs
+  include emacs
+  include slate
+  include textmate
   #include phantomjs
-  #include nginx
   #include mongodb
   #include elasticsearch
-  #include textmate
-  #include slate
   #include postgresql
   #include redis
-  #include hub
   #include onepassword
 
   package {
