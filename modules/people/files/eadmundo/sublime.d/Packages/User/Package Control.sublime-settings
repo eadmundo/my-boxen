@@ -1,0 +1,15 @@
+{
+	"install_missing": true,
+	"installed_packages":
+	[
+		"GitGutter",
+		"Jinja2",
+		"LESS",
+		"nginx",
+		"Package Control",
+		"Pretty JSON",
+		"Puppet",
+		"SublimeLinter",
+		"TrailingSpaces"
+	]
+}
