@@ -12,6 +12,7 @@ class people::eadmundo {
   include emacs
   include slate
   include textmate
+  include firefox
   #include phantomjs
   #include mongodb
   #include elasticsearch
@@ -57,10 +58,15 @@ class people::eadmundo {
     recurse => true,
   }
 
-  # repository { $sublime_user_prefs_dir:
-  #   source  => "${::github_login}/sublime.d",
-  #   require => File[$sublime_dirs],
-  # }
+  include osx::finder::unhide_library
+  #include osx::dock::clear_dock
+  include osx::dock::hide_indicator_lights
+  include osx::global::enable_keyboard_control_access
+  include osx::global::expand_print_dialog
+  include osx::global::expand_save_dialog
+  include osx::global::disable_key_press_and_hold
+  include osx::disable_app_quarantine
+  include osx::no_network_dsstores
 
   # define plist( $github_login, $directory, $app, $plist) {
 
